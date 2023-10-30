@@ -1,0 +1,10 @@
+
+node_modules
+src/validator
+
+build/
+dist/
+.idea
+.vscode
+
+

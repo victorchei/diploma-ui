@@ -1,0 +1,38 @@
+import { Input } from "@mui/material";
+import React from "react";
+import ControlledTreeView from "./components/ControlledTreeView";
+import "./style/index.css";
+import { check } from "./validator";
+import { ErrorsType } from "./validator/src/errors/error";
+
+import { GlobalWorkerOptions } from "pdfjs-dist";
+GlobalWorkerOptions.workerSrc =
+  "//cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.js";
+
+export default function App() {
+  const [errorsData, setErrorsData] = React.useState<ErrorsType>({});
+
+  const onChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputElement = e.target as HTMLInputElement;
+    if (inputElement.files) {
+      const file = inputElement.files[0];
+
+      const reader = new FileReader();
+      const fileData = await new Promise<ArrayBuffer>((resolve, reject) => {
+        reader.onload = () => resolve(reader.result as ArrayBuffer);
+        reader.onerror = reject;
+        reader.readAsArrayBuffer(file);
+      });
+
+      const data = await check(fileData);
+      setErrorsData(data);
+    }
+  };
+
+  return (
+    <div className="App">
+      <Input type="file" onChange={onChange} />
+      <ControlledTreeView errorsData={errorsData} />
+    </div>
+  );
+}
