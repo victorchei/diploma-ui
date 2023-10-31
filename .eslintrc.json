@@ -13,6 +13,5 @@
   "plugins": ["@typescript-eslint"],
   "rules": {
     "max-len": ["error", { "code": 120 }]
-  },
-  "eslint.validate": ["typescript"]
+  }
 }

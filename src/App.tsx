@@ -16,8 +16,8 @@ export default function App() {
   const onChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setLoading(true);
     const inputElement = e.target as HTMLInputElement;
-    if (inputElement.files) {
-      const file = inputElement.files[0];
+    if (inputElement.files && inputElement.files.length > 0) {
+      const file = inputElement.files[0];    
 
       const reader = new FileReader();
       const fileData = await new Promise<ArrayBuffer>((resolve, reject) => {
