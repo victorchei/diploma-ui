@@ -10,18 +10,19 @@ type Props = { errorsData: ErrorsType }
 export default function ControlledTreeView({ errorsData }: Props) {
   const blocks = Object.entries(errorsData).filter(([key, value]) => value)
 
-  const defaultExpanded = blocks.reduce((acc, [key, obj]) => {
-    acc.push(key)
-    Object.keys(obj).forEach((item) => acc.push(key + item))
-    return acc
-  }, [] as string[])
+  // to expand all nodes by default
+  // const defaultExpanded = blocks.reduce((acc, [key, obj]) => {
+  //   acc.push(key)
+  //   Object.keys(obj).forEach((item) => acc.push(key + item))
+  //   return acc
+  // }, [] as string[])
 
   return (
     <TreeView
       aria-label="controlled"
       defaultCollapseIcon={<ExpandMoreIcon />}
       defaultExpandIcon={<ChevronRightIcon />}
-      expanded={defaultExpanded}
+      // defaultExpanded={defaultExpanded}
     >
       {blocks.map(([key, value]) => (
         <TreeItem nodeId={key} label={key} key={key}>

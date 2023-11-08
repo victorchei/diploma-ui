@@ -34,8 +34,7 @@ export default function App() {
   return (
     <div className="App">
       <Input type="file" onChange={onChange} />
-      {loading && <div>Loading...</div>}
-      <ControlledTreeView errorsData={errorsData} />
+      {loading ? <div>Loading...</div> : <ControlledTreeView errorsData={errorsData} />}
     </div>
   )
 }
