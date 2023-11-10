@@ -18,7 +18,7 @@ npm run build
 
 serve -s build
 
-### деплой 
+### деплой  https://create-react-app.dev/docs/deployment/
 
 npm run build
 npm run deploy
