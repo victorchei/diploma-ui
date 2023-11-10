@@ -17,3 +17,8 @@ npm run build
 ### запустити в режимі серверу
 
 serve -s build
+
+### деплой 
+
+npm run build
+npm run deploy
